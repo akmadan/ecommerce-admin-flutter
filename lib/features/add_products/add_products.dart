@@ -1,3 +1,4 @@
+import 'package:ecommerce_admin/features/add_products/bloc/add_product_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -10,38 +11,120 @@ class AddProducts extends StatefulWidget {
 }
 
 class _AddProductsState extends State<AddProducts> {
+  String name = '';
+  String description = '';
+  double price = 0;
+  String status = '';
+
+  TextEditingController namecontroller = TextEditingController();
+
+  TextEditingController desccontroller = TextEditingController();
+
+  TextEditingController pricecontroller = TextEditingController();
+
+  TextEditingController statuscontroller = TextEditingController();
+  final AddProductBloc addProductBloc = AddProductBloc();
+
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Add a Product'),
       ),
-      body: Container(
-        margin: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            TextFormField(
-              key: ValueKey('name'),
-              decoration: InputDecoration(hintText: 'Enter Product Name'),
-            ),
-            TextFormField(
-              key: ValueKey('desc'),
-              decoration: InputDecoration(hintText: 'Enter Product Description'),
-            ),
-            TextFormField(
-              key: ValueKey('price'),
-              decoration: InputDecoration(hintText: 'Enter Product Price'),
-            ),
-            TextFormField(
-              key: ValueKey('status'),
-              decoration: InputDecoration(hintText: 'Enter Product Status'),
-            ), 
-            const SizedBox(height: 20), 
-            SizedBox(
-              height: 50, 
-              width: double.maxFinite,
-              child: ElevatedButton(onPressed: (){}, child: Text('Add Product')))
-          ],
+      body: Form(
+        key: _formKey,
+        child: Container(
+          margin: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              TextFormField(
+                key: ValueKey('name'),
+                controller: namecontroller,
+                decoration: InputDecoration(hintText: 'Enter Product Name'),
+                onSaved: (newValue) {
+                  setState(() {
+                    name = newValue ?? '';
+                  });
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Enter Name';
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              TextFormField(
+                key: ValueKey('desc'),
+                controller: desccontroller,
+                decoration:
+                    InputDecoration(hintText: 'Enter Product Description'),
+                onSaved: (newValue) {
+                  setState(() {
+                    description = newValue ?? '';
+                  });
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Enter Description';
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              TextFormField(
+                key: ValueKey('price'),
+                controller: pricecontroller,
+                decoration: InputDecoration(hintText: 'Enter Product Price'),
+                onSaved: (newValue) {
+                  setState(() {
+                    price = double.parse(newValue ?? '0');
+                  });
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Enter Price';
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              TextFormField(
+                key: ValueKey('status'),
+                controller: statuscontroller,
+                decoration: InputDecoration(hintText: 'Enter Product Status'),
+                onSaved: (newValue) {
+                  setState(() {
+                    status = newValue ?? '';
+                  });
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Enter Status';
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                  height: 50,
+                  width: double.maxFinite,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
+                          addProductBloc.add(AddProductDataEvent(
+                              productName: name,
+                              description: description,
+                              price: price,
+                              status: status));
+                        }
+                      },
+                      child: Text('Add Product')))
+            ],
+          ),
         ),
       ),
     );
