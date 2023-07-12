@@ -1,4 +1,5 @@
 import 'package:ecommerce_admin/features/add_products/add_products.dart';
+import 'package:ecommerce_admin/features/view_products/ui/view_products_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -30,23 +31,32 @@ class DashboardPage extends StatelessWidget {
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10),
               children: [
-                Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.teal),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'View Products',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ViewProductsPage()));
+                  },
+                  child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.teal),
                       ),
-                    )),
-                InkWell ( 
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> AddProducts()));
-                  }, 
+                      child: const Center(
+                        child: Text(
+                          'View Products',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                      )),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AddProducts()));
+                  },
                   child: Container(
                       decoration: BoxDecoration(
                         color: Colors.grey.shade200,
