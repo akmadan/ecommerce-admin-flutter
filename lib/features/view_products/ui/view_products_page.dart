@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_admin/features/edit_product/ui/edit_product_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class ViewProductsPage extends StatefulWidget {
   const ViewProductsPage({super.key});
@@ -91,16 +89,13 @@ class _ViewProductsPageState extends State<ViewProductsPage> {
                                                               productsDocs[index]
                                                                   .id)));
                                         },
-                                        child: Text('EDIT')),
+                                        child:const  Text('EDIT')),
                                   )
                                 ],
                               ),
                             ),
-                            Text(
-                              'Rs. ' +
-                                  productsDocs[index]['price'].toString() +
-                                  '/-',
-                              style: TextStyle(
+                            Text('Rs. ${productsDocs[index]['price']}/-',
+                              style: const TextStyle(
                                   fontSize: 18,
                                   color: Colors.teal,
                                   fontWeight: FontWeight.bold),

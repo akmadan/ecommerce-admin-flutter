@@ -1,8 +1,6 @@
 import 'package:ecommerce_admin/features/add_products/add_products.dart';
 import 'package:ecommerce_admin/features/view_products/ui/view_products_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -11,7 +9,7 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ecom'),
+        title: const Text('Ecom'),
       ),
       body: Container(
         margin: const EdgeInsets.all(16),
@@ -36,7 +34,7 @@ class DashboardPage extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ViewProductsPage()));
+                            builder: (context) => const ViewProductsPage()));
                   },
                   child: Container(
                       decoration: BoxDecoration(
@@ -55,7 +53,7 @@ class DashboardPage extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AddProducts()));
+                        MaterialPageRoute(builder: (context) => const AddProducts()));
                   },
                   child: Container(
                       decoration: BoxDecoration(
