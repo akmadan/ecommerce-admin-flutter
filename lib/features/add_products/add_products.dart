@@ -1,7 +1,5 @@
 import 'package:ecommerce_admin/features/add_products/bloc/add_product_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class AddProducts extends StatefulWidget {
   const AddProducts({super.key});
@@ -30,7 +28,7 @@ class _AddProductsState extends State<AddProducts> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add a Product'),
+        title: const Text('Add a Product'),
       ),
       body: Form(
         key: _formKey,
@@ -39,9 +37,9 @@ class _AddProductsState extends State<AddProducts> {
           child: Column(
             children: [
               TextFormField(
-                key: ValueKey('name'),
+                key:const  ValueKey('name'),
                 controller: namecontroller,
-                decoration: InputDecoration(hintText: 'Enter Product Name'),
+                decoration: const InputDecoration(hintText: 'Enter Product Name'),
                 onSaved: (newValue) {
                   setState(() {
                     name = newValue ?? '';
@@ -56,10 +54,10 @@ class _AddProductsState extends State<AddProducts> {
                 },
               ),
               TextFormField(
-                key: ValueKey('desc'),
+                key:const  ValueKey('desc'),
                 controller: desccontroller,
                 decoration:
-                    InputDecoration(hintText: 'Enter Product Description'),
+                    const InputDecoration(hintText: 'Enter Product Description'),
                 onSaved: (newValue) {
                   setState(() {
                     description = newValue ?? '';
@@ -74,9 +72,9 @@ class _AddProductsState extends State<AddProducts> {
                 },
               ),
               TextFormField(
-                key: ValueKey('price'),
+                key: const ValueKey('price'),
                 controller: pricecontroller,
-                decoration: InputDecoration(hintText: 'Enter Product Price'),
+                decoration: const InputDecoration(hintText: 'Enter Product Price'),
                 onSaved: (newValue) {
                   setState(() {
                     price = double.parse(newValue ?? '0');
@@ -91,9 +89,9 @@ class _AddProductsState extends State<AddProducts> {
                 },
               ),
               TextFormField(
-                key: ValueKey('status'),
+                key: const ValueKey('status'),
                 controller: statuscontroller,
-                decoration: InputDecoration(hintText: 'Enter Product Status'),
+                decoration:const  InputDecoration(hintText: 'Enter Product Status'),
                 onSaved: (newValue) {
                   setState(() {
                     status = newValue ?? '';
@@ -122,7 +120,7 @@ class _AddProductsState extends State<AddProducts> {
                               status: status));
                         }
                       },
-                      child: Text('Add Product')))
+                      child:const  Text('Add Product')))
             ],
           ),
         ),
